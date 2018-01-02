@@ -45,6 +45,30 @@ json2xml({ a: 1 }, { header: true });
 json2xml({ a: 1, attr: { b: 2, c: 3 } }, { attributes_key: 'attr' });
 // <a b="2" c="3" >1</a>
 
+// add node attributes version 2:
+var json = {
+	a: {
+		aa: {
+			bb: "value_bb" 
+			attr: { dd: "value_dd" }
+		},
+		cc: {
+			ff: "value_ff" 
+			attr: { ee: "value_ee" }
+		},
+		attr: { d: value_d, e: value_e }
+	}
+},{ attributes_key: 'attr' }
+json2xml(json, { attributes_key: 'attr' });
+//<a d="value_d" e="value_e">
+//	<aa dd="value_dd">
+//		<bb>value_bb</bb>
+//	</aa>
+//	<cc ee="value_ee">
+//		<ff>value_ff</ff>
+//	</cc>
+//</a>
+
 // arrays:
 json2xml([ { a: 1 }, { b: 2 } ]);
 //'<a>1</a><b>2</b>
